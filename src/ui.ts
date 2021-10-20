@@ -12,7 +12,7 @@ export function start() {
 }
 
 /**
- * The main menu. Will show until the user exits
+ * The main menu. Will show until the user exits. 
  */
 function showMainMenu(psc:PaymentSystemContext) {
   while(true){ //run until we exit
@@ -39,6 +39,13 @@ function showMainMenu(psc:PaymentSystemContext) {
   }
 }
 
+
+/**
+ * Payment menu for Credit card. Validates input and displays a simple encryption message if valid.
+ * If not valid, displays an error message.
+ * 
+ * @param psc - the payment system context used for processing
+ */
 function showCreditCardPaymentMenu(psc:PaymentSystemContext) {
   console.log('Enter Credit Card Payment Details.');
 
@@ -58,6 +65,12 @@ function showCreditCardPaymentMenu(psc:PaymentSystemContext) {
   }
 }
 
+/**
+ * Payment menu for Bank Drafts. Validates input & displays simple encryption message if valid.
+ * If not valid, displays an error message.
+ * 
+ * @param psc the payment system context used for processing
+ */
 function showBankDraftPaymentMenu(psc:PaymentSystemContext) {
   console.log('Enter Bank Account Details.');
   let name:string = readlineSync.question('  Name: ');
@@ -76,6 +89,12 @@ function showBankDraftPaymentMenu(psc:PaymentSystemContext) {
   }
 }
 
+/**
+ * Payment menu for Online Payment. Validates input & displays simple encryption message if valid.
+ * If not valid, displays an erorr message.
+ * 
+ * @param psc the payment system context used for processing
+ */
 function showOnlinePaymentMenu(psc:PaymentSystemContext) {
   console.log('Enter Online Payment Details.');
   let email:string = readlineSync.question('  Enter Your Email Address: ');
@@ -93,6 +112,13 @@ function showOnlinePaymentMenu(psc:PaymentSystemContext) {
   }
 }
 
+
+/**
+ * Payment menu for Offline Payment. Validates input & displays simple encryption message if valid.
+ * If not valid, displays an erorr message.
+ * 
+ * @param psc the payment system context used for processing
+ */
 function showOfflinePaymentMenu(psc:PaymentSystemContext) {
   console.log('Enter Offline Payment Details.');
   let name:string = readlineSync.question('  Name: ');
