@@ -1,28 +1,9 @@
-import {paymentStrategy} from './payment_strategy';
-export class PaymentSystemExecutor {
+import { BankDraftBuilder } from './BankDraftBuilder';
 
-    
-    constructor(){
-        
-    }
 
-    getPaymentInfo(){
-        //Get informatino based on payment type
-    }
+export type PaymentType = "BankDraft" | "CreditCard" | "Offline" | "Online";
 
-    validatePaymentInfo(){
-        //validated payment infor based on type
-    }
-
-    execute(){
-        //Workflow & print
-    }
+class PaymentSystemExecutor{
+    //Does workflow
 }
 
-export class PaymentSystemContext {
-    
-    constructor() {
-
-    }
-
-}
