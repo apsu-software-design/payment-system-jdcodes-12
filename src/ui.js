@@ -1,22 +1,15 @@
 "use strict";
 //User Interface for The Payment System
 //@author James Church
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.start = void 0;
 var readlineSync = require("readline-sync"); //for easier repeated prompts
-var payment_systems_1 = require("./payment_systems");
-var payment_builder_1 = require("./payment_builder");
-/**
- * Function to run the UI
- */
+var PaymentFactory_1 = require("./PaymentFactory");
 function start() {
-    showMainMenu(new payment_systems_1.PaymentSystemContext());
+    showMainMenu();
 }
 exports.start = start;
-/**
- * The main menu. Will show until the user exits
- */
-function showMainMenu(psc) {
+function showMainMenu() {
     while (true) { //run until we exit
         console.log("Welcome to the Payment System! You wish to purchase an item for $5. Pick an option:\n  1. Use a credit card.\n  2. Use a bank draft.\n  3. Use an online payment system.\n  4. Use an offline payment system.\n  5. Quit.");
         var response = readlineSync.question('> ');
@@ -25,76 +18,35 @@ function showMainMenu(psc) {
         }
         switch (response) { //handle each response
             case '1':
-                showCreditCardPaymentMenu(psc);
+                showCreditCardPaymentMenu();
                 break;
             case '2':
-                showBankDraftPaymentMenu(psc);
+                showBankDraftPaymentMenu();
                 break;
             case '3':
-                showOnlinePaymentMenu(psc);
+                showOnlinePaymentMenu();
                 break;
             case '4':
-                showOfflinePaymentMenu(psc);
+                showOfflinePaymentMenu();
                 break;
             default: console.log('Invalid option!');
         }
         console.log(''); //extra empty line for revisiting
     }
 }
-function showCreditCardPaymentMenu(psc) {
-    console.log('Enter Credit Card Payment Details.');
-    var name = readlineSync.question('  Name: ');
-    var creditCardNumber = readlineSync.question('  Credit Card Number: ');
-    var creditCardExpirationDate = readlineSync.question('  Credit Card Expiration Date (MM/DD): ');
-    var valid = /^[\w.' ]+$/.test(name) && /\d{15,16}/.test(creditCardNumber) && /\d\d\/\d\d/.test(creditCardExpirationDate);
-    if (valid) {
-        console.log("Your payment information is being encrypted.");
-        console.log("The payment is being processed.");
-    }
-    else {
-        console.log('The payment is invalid.');
-    }
+function showCreditCardPaymentMenu() {
+    var cc = PaymentFactory_1.createPayment("creditcard");
+    cc === null || cc === void 0 ? void 0 : cc.execute();
 }
-function showBankDraftPaymentMenu(psc) {
-    console.log('Enter Bank Account Details.');
-    var name = readlineSync.question('  Name: ');
-    var bankRoutingNumber = readlineSync.question('  Bank Routing Number: ');
-    var bankAccountNumber = readlineSync.question('  Bank Account Number: ');
-    var valid = /^[\w.' ]+$/.test(name) && /\d{9}/.test(bankRoutingNumber) && /\d{6,12}/.test(bankAccountNumber);
-    if (valid) {
-        console.log("Your payment information is being encrypted.");
-        console.log("The payment is being processed.");
-    }
-    else {
-        console.log('The payment is invalid.');
-    }
+function showBankDraftPaymentMenu() {
+    var bd = PaymentFactory_1.createPayment("bankdraft");
+    bd === null || bd === void 0 ? void 0 : bd.execute();
 }
-function showOnlinePaymentMenu(psc) {
-    console.log('Enter Online Payment Details.');
-    var email = readlineSync.question('  Enter Your Email Address: ');
-    var paymentPassword = readlineSync.question('  Enter Your Payment Password: ');
-    var valid = /^[\w@.]+$/.test(email) && /\w+/.test(paymentPassword);
-    if (valid) {
-        console.log("Your payment information is being encrypted.");
-        console.log("The payment is being processed.");
-    }
-    else {
-        console.log('The payment is invalid.');
-    }
+function showOnlinePaymentMenu() {
+    var op = PaymentFactory_1.createPayment("online");
+    op === null || op === void 0 ? void 0 : op.execute();
 }
-function showOfflinePaymentMenu(psc) {
-    console.log('Enter Offline Payment Details.');
-    var name = readlineSync.question('  Name: ');
-    var billingAddress = readlineSync.question('  Enter Your Billing Address: ');
-    var valid = /^[\w.' ]+$/.test(name) && /^[\w.' ]+$/.test(billingAddress);
-    if (valid) {
-        console.log("Your payment information is being encrypted.");
-        console.log("The payment is being processed.");
-    }
-    else {
-        console.log('The payment is invalid.');
-    }
-}
-function createPaymentBuilder() {
-    payment_builder_1.PaymentBuilder;
+function showOfflinePaymentMenu() {
+    var ofp = PaymentFactory_1.createPayment("offline");
+    ofp === null || ofp === void 0 ? void 0 : ofp.execute();
 }

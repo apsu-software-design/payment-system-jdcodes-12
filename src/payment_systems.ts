@@ -3,7 +3,6 @@ export class PaymentSystemExecutor{
     private collectInfo: () => {[details:string]: string};
     private validateInfo: (info: {[details:string]: string}) =>boolean;
 
-
     constructor(collectInfo:()=>{[details:string]: string}, 
                 validateInfo: (info: {[details:string]: string}) =>boolean) 
     {
@@ -13,8 +12,8 @@ export class PaymentSystemExecutor{
 
     execute(){
         if(this.validateInfo(this.collectInfo())){
-            console.log("Payment is being encrypted...");
-            console.log("Payment is being processed...");
+            console.log("\nEncrypting Payment..");
+            console.log("Processing Payment...");
         }
         else console.log("Sorry, invalid payment!");
     }

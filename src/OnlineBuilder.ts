@@ -14,9 +14,9 @@ export class OnlineBuilder extends Payment {
 
     onlinePaymentInformation() : {[details:string]: string} {
         let op : {[details:string]: string} = {}
-        console.log('Enter online payment information...')
-        op['email'] = readlineSync.question(' Email: ')
-        op['pass'] = readlineSync.question(' Password: ')
+        console.log("\nEnter online payment information...")
+        op['email'] = readlineSync.question('Email: ')
+        op['pass'] = readlineSync.question('Password: ')
         return op        
     }
 

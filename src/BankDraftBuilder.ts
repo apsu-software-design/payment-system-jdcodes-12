@@ -12,7 +12,7 @@ export class BankDraftBuilder extends Payment {
 
     bankDraftInformation() : {[details:string]: string} {
         let bd : {[details: string]: string} = {}
-        console.log("Bank Draft Information....")
+        console.log("\nBank Draft Information....")
         bd['name'] = readlineSync.question('Name: ')
         bd['acctNum'] = readlineSync.question('Acct. #: ')
         bd['routingNum'] = readlineSync.question('Routing #: ')

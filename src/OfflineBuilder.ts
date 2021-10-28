@@ -14,9 +14,9 @@ export class OfflineBuilder extends Payment {
 
     offlinePaymentInformation() : {[details:string]: string} {
         let ofp : {[details:string]: string} = {}
-        console.log('Enter offline payment information...')
-        ofp['name'] = readlineSync.question(' Name: ')
-        ofp['address'] = readlineSync.question(' Current Address: ')
+        console.log("\nEnter offline payment information...")
+        ofp['name'] = readlineSync.question('Name: ')
+        ofp['address'] = readlineSync.question('Current Address: ')
         return ofp        
     }
 

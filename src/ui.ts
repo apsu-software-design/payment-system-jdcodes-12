@@ -1,20 +1,15 @@
 //User Interface for The Payment System
 //@author James Church
 
+
 import readlineSync = require('readline-sync'); //for easier repeated prompts
-import { PaymentSystemExecutor } from './payment_systems';
-import { BankDraftBuilder } from './BankDraftBuilder';
-import { CreditCardBuilder } from './CreditCardBuilder';
-import { OnlineBuilder } from './OnlineBuilder';
-import { OfflineBuilder } from './OfflineBuilder';
+import { createPayment } from './PaymentFactory';
 
 export function start() {
   showMainMenu();
 }
 
-/**
- * The main menu. Will show until the user exits
- */
+
 function showMainMenu() {
   while(true){ //run until we exit
     console.log(`Welcome to the Payment System! You wish to purchase an item for $5. Pick an option:
@@ -42,16 +37,21 @@ function showMainMenu() {
 }
 
 function showCreditCardPaymentMenu() {
-
+  let cc = createPayment("creditcard")
+  cc?.execute()
 }
 
 function showBankDraftPaymentMenu() {
+  let bd = createPayment("bankdraft")
+  bd?.execute()
 }
 
 function showOnlinePaymentMenu() {
- 
+  let op = createPayment("online")
+  op?.execute()
 }
 
 function showOfflinePaymentMenu() {
-  //Call OfflineBuilder
+  let ofp = createPayment("offline")
+  ofp?.execute();
 }
