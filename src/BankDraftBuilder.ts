@@ -1,9 +1,8 @@
 import readlineSync = require('readline-sync');
-
 import { Payment } from './Payment';
 export class BankDraftBuilder extends Payment {
-    collectInfo: () => {[info: string]: string};
-    validateInfo: (info: {[input:string]:string}) => boolean;
+    collectInfo: () => {[details:string]: string};
+    validateInfo: (info: {[details:string]: string}) => boolean;
     
     constructor(){
         super();
@@ -11,8 +10,8 @@ export class BankDraftBuilder extends Payment {
         this.validateInfo = this.validateBankDraft;
     }
 
-    bankDraftInformation() : {[info:string]:string} {
-        let bd : {[inputs: string]:string} = {}
+    bankDraftInformation() : {[details:string]: string} {
+        let bd : {[details: string]: string} = {}
         console.log("Bank Draft Information....")
         bd['name'] = readlineSync.question('Name: ')
         bd['acctNum'] = readlineSync.question('Acct. #: ')
@@ -20,9 +19,9 @@ export class BankDraftBuilder extends Payment {
         return bd
     }
 
-    validateBankDraft(info: {[input:string]:string}) : boolean {
-        return    /^[\w.' ]+$/.test(info.name) 
-               && /\d{9}/.test(info.acctNum)
-               && /\d{6,12}/.test(info.routingNum)
+    validateBankDraft(bd: {[details:string]:string}) : boolean {
+        return    /^[\w.' ]+$/.test(bd.name) 
+               && /\d{9}/.test(bd.acctNum)
+               && /\d{6,12}/.test(bd.routingNum)
     }
 }

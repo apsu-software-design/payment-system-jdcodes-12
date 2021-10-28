@@ -3,10 +3,11 @@
 
 import readlineSync = require('readline-sync'); //for easier repeated prompts
 import { PaymentSystemExecutor } from './payment_systems';
+import { BankDraftBuilder } from './BankDraftBuilder';
+import { CreditCardBuilder } from './CreditCardBuilder';
+import { OnlineBuilder } from './OnlineBuilder';
+import { OfflineBuilder } from './OfflineBuilder';
 
-/**
- * Function to run the UI
- */
 export function start() {
   showMainMenu();
 }
@@ -41,6 +42,7 @@ function showMainMenu() {
 }
 
 function showCreditCardPaymentMenu() {
+
 }
 
 function showBankDraftPaymentMenu() {
