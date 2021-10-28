@@ -1,44 +1,28 @@
 import readlineSync = require('readline-sync');
 
-class Payment{
-    type
-}
-
-
-
+import { Payment } from './Payment';
 export class BankDraftBuilder extends Payment {
-    private paymentType : PaymentType:
-    private name : string;
-    private routingNum : string;
-    private bankAcctNum : string;
-    private bankDraft : BankDraftBuilder;
+    collectInfo: () => {[info: string]: string};
+    validateInfo: (info: {[input:string]:string}) => boolean;
     
     constructor(){
         super();
-        this.bankDraft = new BankDraftBuilder();
+        this.collectInfo = this.bankDraftInformation;
+        this.validateInfo = this.validateBankDraft;
     }
 
-    
-    setName(name : string){ this.name = name; return this;}
-    setRoutingNum(routingNum : string) { this.routingNum = routingNum; return this;}
-    setBankAcctNum(bankAcctNum : string) { this.bankAcctNum = bankAcctNum; return this;}
-
-    getName() { return this.name; }
-    getRoutingNum() { return this.routingNum; }
-    getBankAcctNum() { return this.bankAcctNum; }
-
-    input() : void {
-        console.log('Enter Bank Account Details.');
-        this.name = readlineSync.question('  Name: ');
-        this.routingNum= readlineSync.question('  Bank Routing Number: ');
-        this.bankAcctNum = readlineSync.question('  Bank Account Number: ');
+    bankDraftInformation() : {[info:string]:string} {
+        let bd : {[inputs: string]:string} = {}
+        console.log("Bank Draft Information....")
+        bd['name'] = readlineSync.question('Name: ')
+        bd['acctNum'] = readlineSync.question('Acct. #: ')
+        bd['routingNum'] = readlineSync.question('Routing #: ')
+        return bd
     }
 
-    validate() : boolean {
-        return /^[\w.' ]+$/.test(this.name) && /\d{9}/.test(this.routingNum) && /\d{6,12}/.test(this.bankAcctNum);
-    }
-
-    build() : BankDraftBuilder {
-        return this.bankDraft;
+    validateBankDraft(info: {[input:string]:string}) : boolean {
+        return    /^[\w.' ]+$/.test(info.name) 
+               && /\d{9}/.test(info.acctNum)
+               && /\d{6,12}/.test(info.routingNum)
     }
 }
